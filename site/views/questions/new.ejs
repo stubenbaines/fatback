@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Widgets</title>
+    </head>
+    <body>
+    <h1>Add Question:</h1>
+    <form method="post" action="/questions/create" enctype="application/x-www-form-urlencoded">
+        <p>Question title: 
+            <input type="text" name="title" id="title" size="25" required/>
+        </p>
+        <p>Question: <br />
+            <textarea name="questionBody" id="questionBody" cols="20" rows="5"></textarea>
+        </p>
+        <p>Tags: 
+            <input type="text" name="tags" id="tags" size="25" required/>
+        </p>
+        <p>
+            <input type="submit" name="submit" id="submit" value="Submit"/> 
+            <input type="reset" name="reset" id="reset" value="Reset"/>
+        </p>
+    </form>
+</body>
