@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+    <head>
+        <title><%= title %></title>
+    </head>
+    <body>
+        <h1><%= title %></h1>
+        <p>Dennis, please find all your backlog of questions below!</p>
+        
+        <% for(var i = 0; i < question.length; i++)  { %>
+        	<p>
+        		<b>Id : </b><%= question[i].id %><br />
+        		<b>Title: </b><%= question[i].title %><br />
+        		<b>Body : </b><%= question[i].body %><br />
+        		<b>Tags : </b><%= question[i].tags %></p>
+        <% } %>
+    </body>
+</html>
