@@ -31,11 +31,24 @@ exports.create = function(req, res) {
 // Show a question 
 exports.show = function(req, res) {
     var indx = parseInt(req.params.id, 10) - 1;
-    if (!questions[indx]) {
-        res.send('There is no question with that id');
-    } else {
-        res.send(questions[indx]);
-    }
+
+    res.render('questions/show', { title: 'Questions Listing', question: questions}, function(err, stuff) {
+     if (!err) { 
+         console.log(stuff); 
+         res.write(stuff); 
+         res.end();
+     }
+    });
+
+    // For debugging
+    console.log(questions[0].title);
+
+    // Original code
+    // if (!questions[indx]) {
+    //     res.send('There is no question with that id');
+    // } else {
+    //     res.send(questions[indx]);
+    // }
 };
 
 // Delete a question.
