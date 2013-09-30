@@ -15,6 +15,11 @@ exports.new = function(req, res) {
     res.render('questions/new', {title: 'New Question'});
 };
 
+// Show delete a question page 
+exports.delete = function(req, res) {
+    res.render('questions/delete', { title: 'Questions to delete', question: questions});
+};
+
 // Add a question.
 exports.create = function(req, res) {
     var id = questions.length + 1;
@@ -40,9 +45,6 @@ exports.show = function(req, res) {
      }
     });
 
-    // For debugging
-    console.log(questions[0].title);
-
     // Original code
     // if (!questions[indx]) {
     //     res.send('There is no question with that id');
@@ -51,8 +53,20 @@ exports.show = function(req, res) {
     // }
 };
 
+
+
 // Delete a question.
 exports.destroy = function(req, res) {
+    console.log("In Destory");
+
+    res.render('questions/delete', { title: 'Question Deletion', question: questions}, function(err, stuff) {
+     if (!err) { 
+         console.log(stuff); 
+         res.write(stuff); 
+         res.end();
+     }
+    });
+
     var indx = req.params.id - 1;
     delete widgets[indx];
 
