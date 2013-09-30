@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+    <head>
+        <title><%= title %></title>
+    </head>
+    <body>
+        <h1><%= title %></h1>
+        <p>Please select the question you would like to be deleted:</p>
+        
+        <% for(var i = 0; i < question.length; i++) { %>
+        	<form action="./" method="post">
+        		<input type="checkbox" name="delete_target" value="true"><%= question[i].title %><br>
+        		<p><input type="submit" value="Submit"> </p>
+        	</form>
+        <% } %>
+    </body>
+</html>
