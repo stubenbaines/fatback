@@ -1,10 +1,4 @@
-// In memory sample data
-var questions = [{
-    id : 1,
-    title : 'How do I create a node app?',
-    body : 'blah blah, blah',
-    tags : ['node', 'javascript']
-}];
+var Question = require('../models/questions.js');
 
 // Index listing of questions at /questions
 exports.index = function(req, res) {
@@ -17,38 +11,38 @@ exports.new = function(req, res) {
 
 // Add a question.
 exports.create = function(req, res) {
-    var id = questions.length + 1;
-    questions.push({
-        id : id,
+    var q = {
+        id : 1,
         title : req.body.title,
         body : req.body.questionBody,
         tags : req.body.tags.split(',')
+    };
+    var questionObj = new Question(q);
+
+    questionObj.save(function(err, data) {
+        if (err) {
+            res.send(err);
+        } else {
+            console.log(data);
+            res.render('questions/added', {title: 'Question Added', question : q});
+        }
     });
-    console.log('added ' + questions[id - 1]);
-    res.render('questions/added', {title: 'Question Added', question : questions[id-1]});
 };
 
 // Show a question 
 exports.show = function(req, res) {
     var indx = parseInt(req.params.id, 10) - 1;
 
-    res.render('questions/show', { title: 'Questions Listing', question: questions}, function(err, stuff) {
-     if (!err) { 
-         console.log(stuff); 
-         res.write(stuff); 
-         res.end();
-     }
+    Question.findOne({id : indx}, function(err, doc) {
+        if (err) {
+            res.send('There is no widget with this id');
+        } else {
+            res.render('questions/show', { title: 'Questions Listing', question: doc});
+        }
     });
 
     // For debugging
     console.log(questions[0].title);
-
-    // Original code
-    // if (!questions[indx]) {
-    //     res.send('There is no question with that id');
-    // } else {
-    //     res.send(questions[indx]);
-    // }
 };
 
 // Delete a question.

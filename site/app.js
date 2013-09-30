@@ -6,9 +6,16 @@
 var express = require('express'), 
     routes = require('./routes'),
     map = require('./maproutecontroller'),
+    mongoose = require('mongoose'),
     http = require('http'),
     path = require('path'),
     app = express();
+
+// Database connection
+mongoose.connect('mongodb://127.0.0.1/QuestionDB');
+mongoose.connection.on('open', function() {
+    console.log('Connected to Mongoose');
+});
 
 app.configure(function(){
   app.set('port', process.env.PORT || 3000);
