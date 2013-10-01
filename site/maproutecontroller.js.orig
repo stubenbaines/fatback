@@ -9,9 +9,15 @@ exports.mapRoute = function(app, prefix) {
 
     // add
     app.get(prefix + '/new', prefixObj.new);
+<<<<<<< HEAD
+
+    // show 
+    //app.get(prefix + '/:id', prefixObj.show);
+=======
     
     // pre-delete 
     app.get(prefix + '/delete', prefixObj.delete);
+>>>>>>> 7a4ad65a7180ba38297a3df6a8f71939123599bd
 
     // create
     app.post(prefix + '/create', prefixObj.create);
@@ -25,11 +31,14 @@ exports.mapRoute = function(app, prefix) {
     // destroy
     app.del(prefix + '/:id', prefixObj.destroy);
 
-    // show 
-    //app.get(prefix + '/:id', prefixObj.show);
-
-
+<<<<<<< HEAD
     // list 
     app.get(prefix + '/list', prefixObj.list);
+=======
+    // show 
+    app.get(prefix + '/:id', prefixObj.show);
+
+
+>>>>>>> 7a4ad65a7180ba38297a3df6a8f71939123599bd
 };
 

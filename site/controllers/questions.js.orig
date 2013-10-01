@@ -43,6 +43,16 @@ exports.list= function(req, res) {
         }
     });
 
+<<<<<<< HEAD
+    // For debugging
+=======
+    // Original code
+    // if (!questions[indx]) {
+    //     res.send('There is no question with that id');
+    // } else {
+    //     res.send(questions[indx]);
+    // }
+>>>>>>> 7a4ad65a7180ba38297a3df6a8f71939123599bd
 };
 
 
