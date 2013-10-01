@@ -12,7 +12,6 @@ exports.new = function(req, res) {
 // Add a question.
 exports.create = function(req, res) {
     var q = {
-        id : 1,
         title : req.body.title,
         body : req.body.questionBody,
         tags : req.body.tags.split(',')
@@ -30,19 +29,16 @@ exports.create = function(req, res) {
 };
 
 // Show a question 
-exports.show = function(req, res) {
-    var indx = parseInt(req.params.id, 10) - 1;
-
-    Question.findOne({id : indx}, function(err, doc) {
+exports.list= function(req, res) {
+    Question.find({}, function(err, doc) {
         if (err) {
-            res.send('There is no widget with this id');
+            res.send('There is no question with this id');
         } else {
-            res.render('questions/show', { title: 'Questions Listing', question: doc});
+            res.render('questions/list', { title: 'Questions Listing', questions: doc});
         }
     });
 
     // For debugging
-    console.log(questions[0].title);
 };
 
 // Delete a question.

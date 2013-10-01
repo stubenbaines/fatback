@@ -10,7 +10,7 @@ exports.mapRoute = function(app, prefix) {
     app.get(prefix + '/new', prefixObj.new);
 
     // show 
-    app.get(prefix + '/:id', prefixObj.show);
+    //app.get(prefix + '/:id', prefixObj.show);
 
     // create
     app.post(prefix + '/create', prefixObj.create);
@@ -24,5 +24,7 @@ exports.mapRoute = function(app, prefix) {
     // destroy
     app.del(prefix + '/:id', prefixObj.destroy);
 
+    // list 
+    app.get(prefix + '/list', prefixObj.list);
 };
 
