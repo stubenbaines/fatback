@@ -9,9 +9,17 @@ exports.new = function(req, res) {
     res.render('questions/new', {title: 'New Question'});
 };
 
-// Show delete a question page 
+// Show delete question selection page
 exports.delete = function(req, res) {
-    res.render('questions/delete', { title: 'Questions to delete', question: questions});
+    console.log("Delete question selection page");
+
+    Question.find({}, function(err, doc) {
+        if (err) {
+            res.send('There is no question with this id');
+        } else {
+            res.render('questions/delete', { title: 'Which question to delete?', questions: doc});
+        }
+    });
 };
 
 // Add a question.
@@ -50,20 +58,18 @@ exports.list= function(req, res) {
 // Delete a question.
 exports.destroy = function(req, res) {
     console.log("In Destory");
+    console.log("================");
 
-    res.render('questions/delete', { title: 'Question Deletion', question: questions}, function(err, stuff) {
-     if (!err) { 
-         console.log(stuff); 
-         res.write(stuff); 
-         res.end();
-     }
+    Question.remove({ id: req.params.id }, function (err) {
+        if (err) {
+            console.log("Delete error.");
+        } else  {
+            console.log('deleted ' + req.params.id);
+            res.send('deleted ' + req.params.id);
+        }
+
     });
 
-    var indx = req.params.id - 1;
-    delete widgets[indx];
-
-    console.log('deleted ' + req.params.id);
-    res.send('deleted ' + req.params.id);
 };
 
 // Display edit form.
