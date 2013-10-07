@@ -7,11 +7,14 @@
         <h1><%= title %></h1>
         <p>Please select the question you would like to be deleted:</p>
         
-        <% for(var i = 0; i < question.length; i++) { %>
-        	<form action="./" method="post">
-        		<input type="checkbox" name="delete_target" value="true"><%= question[i].title %><br>
-        		<p><input type="submit" value="Submit"> </p>
+        <% for(var i = 0; i < questions.length; i++) { %>
+        	<form action="./<%= questions[i].id %>" method="post">
+        		<p><input type="checkbox" name="delete_target" value="true"><%= questions[i].title %>
+        		<input type="hidden" value="delete" name="_method" />
+        		<input type="submit" value="Delete"> </p>
+        		<%= questions[i].id %>
         	</form>
+        	<br>
         <% } %>
     </body>
 </html>
