@@ -13,6 +13,10 @@ exports.mapRoute = function(app, prefix) {
     // pre-delete 
     app.get(prefix + '/delete', prefixObj.delete);
 
+    // destroy
+    app.del(prefix + '/:id', prefixObj.destroy);
+
+
     // create
     app.post(prefix + '/create', prefixObj.create);
 
@@ -22,8 +26,7 @@ exports.mapRoute = function(app, prefix) {
     // update
     app.put(prefix + '/:id', prefixObj.update);
 
-    // destroy
-    app.del(prefix + '/:id', prefixObj.destroy);
+
 
     // show 
     //app.get(prefix + '/:id', prefixObj.show);
