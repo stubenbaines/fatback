@@ -62,14 +62,6 @@ exports.destroy = function(req, res) {
 
     Question.remove({ _id: req.params.id }, function (err, remove_target_q) {
         console.log(remove_target_q);
-        if (err) {
-            console.log("Delete error.");
-        } else  {
-            console.log('deleted ' + req.params.id);
-            res.send('deleted ' + req.params.id);
-        }
-
-    });
 
 };
 
