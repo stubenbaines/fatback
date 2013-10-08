@@ -9,10 +9,11 @@
         
         <% for(var i = 0; i < questions.length; i++) { %>
         	<form action="./<%= questions[i].id %>" method="post">
-        		<p><input type="checkbox" name="delete_target" value="true"><%= questions[i].title %>
+        		<p><input type="checkbox" name="delete_target" value="true"><b>Title: </b><%= questions[i].title %>
+        		<br><b>Id: </b><%= questions[i].id %>
         		<input type="hidden" value="delete" name="_method" />
         		<input type="submit" value="Delete"> </p>
-        		<%= questions[i].id %>
+
         	</form>
         	<br>
         <% } %>
