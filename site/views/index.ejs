@@ -1,10 +1,18 @@
-<!doctype html>
-<html>
-    <head>
-        <title><%= title %></title>
-    </head>
-    <body>
-        <h1><%= title %></h1>
-        <p>Welcome to <%= title %></p>
-    </body>
-</html>
+<% include shared/header %>
+<div class="row">
+    <div class="twelve columns">
+        <h1>Welcome to <%= title %></h1>
+    </div>
+</div>
+<div class="row">
+    <div class="three columns">
+        <ul>
+            <li><a href="/questions/list">List questions</a></li>
+            <li><a href="/questions/delete">Delete question</a></li>
+        </ul>
+    </div>
+    <div class="nine columns">
+        <p>9 columns</p>
+    </div>
+</div>
+<% include shared/footer %>

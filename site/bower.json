@@ -1,0 +1,26 @@
+{
+  "name": "dennis-help",
+  "version": "0.0.0",
+  "homepage": "https://github.com/stubenbaines/dennis-help",
+  "authors": [
+    "Dennis Pierce <stubenbaines@gmail.com>"
+  ],
+  "description": "NodeJS implementation of StackOverflow",
+  "main": "app.js",
+  "keywords": [
+    "node",
+    "stackoverflow",
+    "gotham",
+    "pixel",
+    "factory"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

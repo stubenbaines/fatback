@@ -23,11 +23,10 @@ app.configure(function(){
   app.set('view engine', 'ejs');
   app.use(express.favicon());
   app.use(express.logger('dev'));
-  app.use(express.static(__dirname + '/public'));
+  app.use(express.static(__dirname + '/bower_components/gumby'));
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(app.router);
-  app.use(express.directory(__dirname + '/public'));
   app.use(function(req, res, next) {
       throw new Error(req.url + ' not found');
   });
