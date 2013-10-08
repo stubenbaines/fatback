@@ -60,7 +60,7 @@ exports.destroy = function(req, res) {
     console.log("In Destory");
     console.log("================");
 
-    Question.remove({ id: req.params.id }, function (err) {
+    Question.remove({ _id: req.params.id }, function (err) {
         if (err) {
             console.log("Delete error.");
         } else  {
