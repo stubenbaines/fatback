@@ -1,24 +1,24 @@
-<!doctype html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title>Widgets</title>
-    </head>
-    <body>
+<% include ../shared/header %>
+<div class="row">
     <h1>Add Question:</h1>
     <form method="post" action="/questions/create" enctype="application/x-www-form-urlencoded">
-        <p>Question title: 
-            <input type="text" name="title" id="title" size="25" required/>
-        </p>
-        <p>Question: <br />
-            <textarea name="questionBody" id="questionBody" cols="20" rows="5"></textarea>
-        </p>
-        <p>Tags: 
-            <input type="text" name="tags" id="tags" size="25" required/>
-        </p>
-        <p>
-            <input type="submit" name="submit" id="submit" value="Submit"/> 
-            <input type="reset" name="reset" id="reset" value="Reset"/>
-        </p>
+        <div class="field">
+            <input class="input" type="text" name="title" id="title" placeholder="Question title" required="required" />
+        </div>
+        <div class="field">
+            <textarea class="input textarea" name="questionBody" id="questionBody" placeholder="Question body"></textarea>
+        </div>
+        <div class="field">
+            <input class="input" type="text" name="tags" id="tags" required="required" placeholder="Tags" />
+        </div>
+        <div class="field">
+            <div class="medium metro rounded info btn">
+                <input type="submit" name="submit" id="submit" value="Submit"/> 
+            </div>
+            <div class="medium metro rounded info btn">
+                <input type="reset" name="reset" id="reset" value="Reset"/>
+            </div>
+        </div>
     </form>
-</body>
+</div>
+<% include ../shared/footer %>

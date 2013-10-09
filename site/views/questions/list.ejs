@@ -1,18 +1,26 @@
-<!doctype html>
-<html>
-    <head>
-        <title><%= title %></title>
-    </head>
-    <body>
-        <h1><%= title %></h1>
-        <p>Dennis, please find all your backlog of questions below!</p>
-        
+<% include ../shared/header %>
+<div class="row">
+    <h1><%= title %></h1>
+</div>
+<div class="row">
+    <table class="striped rounded">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Body</th>
+                <th>Tags</th>
+            </tr>
+        </thead>
+        <tbody>
         <% for(var i = 0; i < questions.length; i++)  { %>
-        	<p>
-        		<b>Id : </b><%= questions[i]._id %><br />
-        		<b>Title: </b><%= questions[i].title %><br />
-        		<b>Body : </b><%= questions[i].body %><br />
-        		<b>Tags : </b><%= questions[i].tags %></p>
+            <tr>
+        		<td><%= questions[i]._id %></td>
+        		<td><%= questions[i].title %></td>
+        		<td><%= questions[i].body %></td>
+        		<td><%= questions[i].tags %></td>
+            </tr>
         <% } %>
-    </body>
-</html>
+        </tbody>
+</div>
+<% include ../shared/footer %>
