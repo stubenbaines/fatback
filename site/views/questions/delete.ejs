@@ -1,13 +1,18 @@
-<!doctype html>
-<html>
-    <head>
-        <title><%= title %></title>
-    </head>
-    <body>
-        <h1><%= title %></h1>
-        <p>Please select the question you would like to be deleted:</p>
-        
+<% include ../shared/header %>
+<div class="row">
+    <h1><%= title %></h1>
+</div>
+<div class="row">
+    <p>Please select the question you would like to be deleted:</p>
+    <table class="striped rounded">
+        <thead>
+            <tr>
+                <th>Question</th>
+            </tr>
+        </thead>
+        <tbody>
         <% for(var i = 0; i < questions.length; i++) { %>
+<<<<<<< HEAD
         	<form action="./<%= questions[i].id %>" method="post">
         		<p><input type="checkbox" name="delete_target" value="true"><b>Title: </b><%= questions[i].title %>
         		<br><b>Id: </b><%= questions[i].id %>
@@ -16,6 +21,26 @@
 
         	</form>
         	<br>
+=======
+            <tr>
+            <td>
+            <form action="./<%= questions[i].id %>" method="post">
+                <input type="hidden" value="delete" name="_method" />
+                <div class="field">
+                    <label class="checkbox" for="delete_target">
+                        <input type="checkbox" name="delete_target" value="true">
+                        <span></span><%= questions[i].title %> (<%= questions[i].id %>)
+                    </label>
+                </div>
+                <div class="field">
+                    <div class="medium default btn"><input type="submit" value="Delete"></div>
+                </div>
+            </form>
+            </td>
+            </tr>
+>>>>>>> upstream/master
         <% } %>
-    </body>
-</html>
+        </tbody>
+    </table>
+</div>
+<% include ../shared/footer %>

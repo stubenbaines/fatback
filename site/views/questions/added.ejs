@@ -1,15 +1,13 @@
-<!doctype html>
-<html>
-    <head>
-        <title><%= title %></title>
-    </head>
-    <body>
-    <h1><%= title %> | <%= question.title%></h1>
-    <ul>
-        <li>ID: <%= question._id %></li>
-        <li>Name: <%= question.title %></li>
-        <li>Body: <%= question.body %></li>
-        <li>Tags: <%= question.tags %></li>
-    </ul>
-    </body>
-</html>
+<% include ../shared/header %>
+<div class="row">
+    <div class="twelve columns">
+        <h1><%= title %></h1>
+        <h2><%= question.title%></h2>
+        <ul>
+            <li>Name: <%= question.title %></li>
+            <li>Body: <%= question.body %></li>
+            <li>Tags: <%= question.tags %></li>
+        </ul>
+    </div>
+</div>
+<% include ../shared/footer %>
