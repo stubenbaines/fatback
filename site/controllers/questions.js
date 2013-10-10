@@ -62,7 +62,7 @@ exports.destroy = function(req, res) {
 
     Question.remove({ _id: req.params.id }, function (err, remove_target_q) {
         console.log(remove_target_q);
-
+    });
 };
 
 // Display edit form.
