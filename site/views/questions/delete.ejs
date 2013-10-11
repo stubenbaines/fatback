@@ -12,16 +12,6 @@
         </thead>
         <tbody>
         <% for(var i = 0; i < questions.length; i++) { %>
-<<<<<<< HEAD
-        	<form action="./<%= questions[i].id %>" method="post">
-        		<p><input type="checkbox" name="delete_target" value="true"><b>Title: </b><%= questions[i].title %>
-        		<br><b>Id: </b><%= questions[i].id %>
-        		<input type="hidden" value="delete" name="_method" />
-        		<input type="submit" value="Delete"> </p>
-
-        	</form>
-        	<br>
-=======
             <tr>
             <td>
             <form action="./<%= questions[i].id %>" method="post">
@@ -38,7 +28,6 @@
             </form>
             </td>
             </tr>
->>>>>>> upstream/master
         <% } %>
         </tbody>
     </table>
