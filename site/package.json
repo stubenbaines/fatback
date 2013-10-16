@@ -10,5 +10,13 @@
     "ejs": "*",
     "connect": "2.x",
     "mongoose": "*"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-jshint": "~0.6.3",
+    "grunt-contrib-watch": "0.1.4",
+    "grunt-nodemon": "~0.1.1",
+    "grunt-node-inspector": "~0.1.0",
+    "grunt-concurrent": "~0.4.0"
   }
 }
