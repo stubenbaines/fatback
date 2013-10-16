@@ -5,8 +5,10 @@ var targets = [
 	'routes/**/*.js',
 	'app.js'
 	],
-	port = 5000,
-	debugPort = 5001;
+	PORT = 5000,
+	DEBUG_PORT = 5001,
+	HOST = 'localhost',
+	APP = './app.js';
 
 module.exports = function(grunt) {
 	'use strict';
@@ -37,34 +39,56 @@ module.exports = function(grunt) {
 				unused: true
 			}
 		},
+		// https://npmjs.org/package/grunt-nodemon
 		nodemon: {
 			dev: {
 				options: {
-					file: './app.js',
-					args: [debugPort],
-					nodeArgs: ['--debug='+debugPort],
+					file: APP,
+					args: [DEBUG_PORT],
+					nodeArgs: ['--debug'],
 					ignoredFiles: ['node_modules/**','bower_components/**'],
 					watchedExtensions: ['js'],
 					watchedFolders: ['.', 'controllers', 'models', 'routes', 'views'],
 					delayTime: 1,
 					legacyWatch: true,
 					env: {
-						PORT: port
+						PORT: PORT
 					},
 					cwd: __dirname
 				}
+			},
+			exec: {
+				options: {
+					exec: 'less'
+				}
 			}
 		},
+		// https://npmjs.org/package/grunt-node-inspector
 		'node-inspector': {
 			custom: {
 				options: {
-					'web-port': port,
-					'web-host': 'localhost',
-					'debug-port': debugPort,
+					//'web-port': PORT,
+					'web-host': HOST,
+					'debug-port': DEBUG_PORT,
 					'save-live-edit': true
 				}
 			}
 		},
+		// open example https://github.com/jsoverson/grunt-open
+		open : {
+			dev : {
+				path: 'http://' + HOST + ':' + PORT + '/debug?port=' + DEBUG_PORT,
+				app: 'Google Chrome'
+			},
+			build : {
+				path : 'http://' + HOST + ':' + PORT,
+				app: 'Google Chrome'
+			},
+			file : {
+				path : ''
+			}
+		},
+		// https://github.com/sindresorhus/grunt-concurrent
 		concurrent: {
 			dev: {
 				tasks: ['nodemon', 'node-inspector'],
@@ -74,15 +98,17 @@ module.exports = function(grunt) {
 			}
 		}
 	});
-
+	// load npm tasks
 	grunt.loadNpmTasks('grunt-contrib-jshint');
-	grunt.loadNpmTasks('grunt-contrib-watch');
-	grunt.loadNpmTasks('grunt-node-inspector');
 	grunt.loadNpmTasks('grunt-nodemon');
+	grunt.loadNpmTasks('grunt-node-inspector');
 	grunt.loadNpmTasks('grunt-concurrent');
-
+	grunt.loadNpmTasks('grunt-open');
+	
+	// task alias
+	grunt.registerTask('dev', ['open:dev']);
+	grunt.registerTask('build', ['open:build']);
 	grunt.registerTask('lint', ['jshint']);
-	grunt.registerTask('debug', ['node-inspector']);
 	grunt.registerTask('default', ['concurrent']);
 
 };
