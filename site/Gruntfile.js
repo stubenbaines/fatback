@@ -1,3 +1,13 @@
+/*
+	available tasks:
+	grunt lint -- jshint
+	grunt -- default task will trigger nodemon and node-inspector
+	grunt nodemon -- trigger only nodemon
+	grunt node-inspector -- trigger only node-inspector
+	grunt open:debug -- open the node-inspector in chrome (only the latest chrome works)
+	gurnt open:preview -- open the project in chrome (replace app with 'Safari' or 'Firefox')
+*/
+
 var targets = [
 	'models/**/*.js',
 	'views/**/*.js',
@@ -5,10 +15,13 @@ var targets = [
 	'routes/**/*.js',
 	'app.js'
 	],
-	PORT = 5000,
+	WEB_PORT = 5000,
 	DEBUG_PORT = 5001,
+	INSPECTOR_PORT = 5010,
 	HOST = 'localhost',
-	APP = './app.js';
+	APP = './app.js',
+	BROWSER = 'Google Chrome';
+	// 'Google Chrome', 'Safari', 'Firefox'
 
 module.exports = function(grunt) {
 	'use strict';
@@ -44,15 +57,15 @@ module.exports = function(grunt) {
 			dev: {
 				options: {
 					file: APP,
-					args: [DEBUG_PORT],
-					nodeArgs: ['--debug'],
+					args: [WEB_PORT],
+					nodeArgs: ['--debug='+DEBUG_PORT],
 					ignoredFiles: ['node_modules/**','bower_components/**'],
 					watchedExtensions: ['js'],
 					watchedFolders: ['.', 'controllers', 'models', 'routes', 'views'],
 					delayTime: 1,
 					legacyWatch: true,
 					env: {
-						PORT: PORT
+						PORT: WEB_PORT
 					},
 					cwd: __dirname
 				}
@@ -67,7 +80,7 @@ module.exports = function(grunt) {
 		'node-inspector': {
 			custom: {
 				options: {
-					//'web-port': PORT,
+					'web-port': INSPECTOR_PORT,
 					'web-host': HOST,
 					'debug-port': DEBUG_PORT,
 					'save-live-edit': true
@@ -76,13 +89,13 @@ module.exports = function(grunt) {
 		},
 		// open example https://github.com/jsoverson/grunt-open
 		open : {
-			dev : {
-				path: 'http://' + HOST + ':' + PORT + '/debug?port=' + DEBUG_PORT,
-				app: 'Google Chrome'
+			debug : {
+				path: 'http://' + HOST + ':' + INSPECTOR_PORT + '/debug?port=' + DEBUG_PORT,
+				app: BROWSER
 			},
-			build : {
-				path : 'http://' + HOST + ':' + PORT,
-				app: 'Google Chrome'
+			preview : {
+				path : 'http://' + HOST + ':' + WEB_PORT,
+				app: BROWSER
 			},
 			file : {
 				path : ''
@@ -96,18 +109,16 @@ module.exports = function(grunt) {
 					logConcurrentOutput: true
 				}
 			}
+		},
+		watch: {
+		    files: '<config:jshint.files>',
+		    tasks: 'jshint'
 		}
 	});
-	// load npm tasks
-	grunt.loadNpmTasks('grunt-contrib-jshint');
-	grunt.loadNpmTasks('grunt-nodemon');
-	grunt.loadNpmTasks('grunt-node-inspector');
-	grunt.loadNpmTasks('grunt-concurrent');
-	grunt.loadNpmTasks('grunt-open');
+	// load npm tasks with matchdep
+	require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 	
 	// task alias
-	grunt.registerTask('dev', ['open:dev']);
-	grunt.registerTask('build', ['open:build']);
 	grunt.registerTask('lint', ['jshint']);
 	grunt.registerTask('default', ['concurrent']);
 
