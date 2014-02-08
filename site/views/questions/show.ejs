@@ -1,0 +1,19 @@
+<% include ../shared/header %>
+<div class="row">
+    <h1><%= title %></h1>
+</div>
+<div class="row">
+    <h2><%= question.title %></h2>
+    <div><%= question.body %></div>
+    <h4>Tags</h4>
+    <% for(var i=0; i<question.tags.length; i++) {%>
+        <a href="/tags/<%= question.tags[0] %>" class="medium btn pill-right default"><%= question.tags[0] %></a>
+    <% } %>
+</div>
+<div class="row">
+    <% include ../answers/list %>
+</div>
+<div class="row">
+    <% include ../answers/new %>
+</div>
+<% include ../shared/footer %>

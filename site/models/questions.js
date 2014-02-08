@@ -1,7 +1,6 @@
 var mongoose = require('mongoose');
 
-var Schema = mongoose.Schema, 
-    ObjectId = Schema.ObjectId;
+var Schema = mongoose.Schema; 
 
 var Question = new Schema({
     title : {type : String, required : true, trim : true},

@@ -15,12 +15,13 @@
         <tbody>
         <% for(var i = 0; i < questions.length; i++)  { %>
             <tr>
-        		<td><%= questions[i]._id %></td>
-        		<td><%= questions[i].title %></td>
+        		<td><a href="/questions/<%= questions[i]._id %>"><%= questions[i]._id %></a></td>
+        		<td><a href="/questions/<%= questions[i]._id %>"><%= questions[i].title %></a></td>
         		<td><%= questions[i].body %></td>
         		<td><%= questions[i].tags %></td>
             </tr>
         <% } %>
         </tbody>
+    </table>
 </div>
 <% include ../shared/footer %>

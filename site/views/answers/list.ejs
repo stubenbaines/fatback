@@ -1,0 +1,21 @@
+<div class="row">
+    <h1>Answers</h1>
+</div>
+<div class="row">
+    <table class="striped rounded">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Body</th>
+            </tr>
+        </thead>
+        <tbody>
+        <% for(var i = 0; i < answers.length; i++)  { %>
+            <tr>
+        		<td><a href="/questions/<%= answers[i]._id %>"><%= answers[i]._id %></a></td>
+        		<td><%= answers[i].body %></td>
+            </tr>
+        <% } %>
+        </tbody>
+    </table>
+</div>

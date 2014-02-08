@@ -1,7 +1,14 @@
 <% include shared/header %>
-<div class="row">
-    <div class="twelve columns">
-        <h1>Welcome to <%= title %></h1>
+    <div class="row">
+        <div class="ten columns">
+            <h1>Welcome to <%= title %></h1>
+        </div>
+    <div class="two columns">
+        <% if (!user) { %>
+            <h2>Welcome! Please log in.</h2>
+        <% } else { %>
+            <h2>Hello, <%= user.username %>.</h2>
+        <% } %>
     </div>
 </div>
 <div class="row">
@@ -10,7 +17,7 @@
             <li><a href="/questions/list">List questions</a></li>
             <li><a href="/questions/new">Add a question</a></li>
             <li><a href="/questions/delete">Delete a question</a></li>
-            <li><a href="#">Login/Sign up</a></li>
+            <li><a href="/login">Login</a>/<a href="/register">Sign up</a></li>
         </ul>
     </div>
     <div class="nine columns">

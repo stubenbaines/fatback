@@ -1,0 +1,17 @@
+<div class="row">
+    <h1>Answer this question:</h1>
+    <form method="post" action="/answers/create" enctype="application/x-www-form-urlencoded">
+        <input type="hidden" name="question" value="<%= question._id %>" />
+        <div class="field">
+            <textarea class="input textarea" name="body" id="body" placeholder="Answer body"></textarea>
+        </div>
+        <div class="field">
+            <div class="medium metro rounded info btn">
+                <input type="submit" name="submit" id="submit" value="Submit"/> 
+            </div>
+            <div class="medium metro rounded info btn">
+                <input type="reset" name="reset" id="reset" value="Reset"/>
+            </div>
+        </div>
+    </form>
+</div>

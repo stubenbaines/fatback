@@ -1,4 +1,5 @@
-var Question = require('../models/questions.js');
+var Question = require('../models/questions.js'),
+    Answer = require('../models/answers.js');
 
 // Index listing of questions at /questions
 exports.index = function(req, res) {
@@ -41,7 +42,7 @@ exports.create = function(req, res) {
     });
 };
 
-// Show a question 
+// Show all questions 
 exports.list= function(req, res) {
     Question.find({}, function(err, doc) {
         if (err) {
@@ -50,9 +51,21 @@ exports.list= function(req, res) {
             res.render('questions/list', { title: 'Questions Listing', questions: doc});
         }
     });
-
 };
 
+// Show a question 
+exports.show = function(req, res) {
+    var id = req.params.id;
+    Question.findById(id, function(err, question) {
+        if (err) {
+            res.send('There is no question with this id');
+        } else {
+            Answer.find({ '_question' : id }, function(err, answers) {
+                res.render('questions/show', { title: 'Question', question: question, answers: answers});
+            });
+        }
+    });
+};
 
 
 // Delete a question.
