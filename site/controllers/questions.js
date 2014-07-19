@@ -70,19 +70,16 @@ exports.show = function(req, res) {
 
 // Delete a question.
 exports.destroy = function(req, res) {
-    console.log("In Destory");
-    console.log("================");
-
-    Question.remove({ _id: req.params.id }, function (err) {
-        if (err) {
-            console.log("Delete error.");
-        } else  {
-            console.log('deleted ' + req.params.id);
-            res.send('deleted ' + req.params.id);
-        }
-
+    Question.remove({ _id: req.params.id }, function (err, remove_target_q) {
+        console.log('Removed : ' + remove_target_q);
     });
-
+    Question.find({}, function(err, doc) {
+        if (err) {
+            res.send('There is no question with this id');
+        } else {
+            res.render('questions/list', { title: 'Questions Listing', questions: doc});
+        }
+    });
 };
 
 // Display edit form.
